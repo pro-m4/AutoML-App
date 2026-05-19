@@ -1,0 +1,96 @@
+ .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #01ABF5;
+    --bs-btn-border-color: #01ABF5;
+
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #018fd1;
+    --bs-btn-hover-border-color: #018fd1;
+
+    --bs-btn-focus-shadow-rgb: 1, 171, 245;
+
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #007bbf;
+    --bs-btn-active-border-color: #007bbf;
+
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #01ABF5;
+    --bs-btn-disabled-border-color: #01ABF5;
+}
+
+.text-primary{color:#01ABF5!important;}
+a {color:#01ABF5B8;}
+.login-bg{background: 
+  linear-gradient(#01ABF5B8, #01ABF5B8),
+  url("/automl/src/img/background.png");
+
+background-size: cover;
+background-position: center;
+display: flex;
+flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+    
+ .imgicon{vertical-align: text-bottom!important;}
+.d-flex{display: flex;
+flex-direction: column;}
+@media (min-width: 1200px) {
+    .fs-4 {
+        font-size: 3rem !important;
+    }
+    .display-1 {font-size:3rem;
+    color:#FFFFFF;}
+}
+.login-banner{display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;}
+
+
+.lead{font-weight: 400!important;
+    color:#FFFFFF!important;
+    }
+   @media (max-width:991.98px){
+    .mobile_logo{
+        display: flex!important;
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo-color{color: white;
+    font-size: 32px;
+font-weight: 700;}
+    .login-bg-mobile{background: 
+            linear-gradient(
+                to bottom, 
+                rgba(0, 74, 107, 0.95) 0%,   /* Πολύ βαθύ "καμένο" γαλάζιο (όχι μαύρο) */
+                rgba(1, 171, 245, 0.75) 100%  /* Το δικό σου γαλάζιο #01ABF5 με διαφάνεια */
+            ),
+            url("/automl/src/img/background.png");
+
+background-size: cover;
+background-position: center;
+display: flex;
+flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;}
+
+  
+   .mobile-form {
+        background-color: #ffffff; /* Τελείως άσπρο */
+        padding: 20px; /* Λίγο παραπάνω αέρας εσωτερικά */
+        border-radius: 25px;
+        
+        /* Η σκιά δίνει βάθος και κάνει τη φόρμα να "ξεκολλάει" από το background */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        
+        /* Προαιρετικά: Αν θέλεις να φαίνεται λίγο το background από πίσω */
+        /* background-color: rgba(255, 255, 255, 0.95); */
+        
+        width: 100%!important; /* Για να πιάνει όλο τον διαθέσιμο χώρο του container */
+    }
+}
+  
+   

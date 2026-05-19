@@ -1,0 +1,54 @@
+ body { font-family: 'Instrument Sans', sans-serif; }
+        /* Layout Helpers */
+        .hero-vh {
+            min-height: 85vh; /* Καταλαμβάνει σχεδόν όλο το ύψος της οθόνης */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .max-width-700 { max-width: 700px; margin: 0 auto; }
+        .nav-height { height: 80px; }
+       
+    
+    /* Λέμε στα sections να αφήνουν κενό 80px από πάνω όταν πηγαίνουμε σε αυτά */
+    section {
+        scroll-margin-top: 80px; 
+    }
+
+    /* Σπρώχνουμε το Hero προς τα κάτω για να μη το τρώει η μπάρα */
+    .hero-vh {
+        padding-top: 100px;
+    }
+
+/* Επίσης, για να μη "κολλάει" το κείμενο πάνω στην μπάρα στα κινητά */
+@media (max-width: 991px) {
+    .hero-vh {
+        padding-top: 100px;
+    }
+}
+.text-primary{color:#01ABF5!important;}
+.btn-primary {
+    background-color: #01ABF5!important;
+    border-color: #01ABF5!important;
+}
+
+.btn-primary:hover {
+    background-color: #018fd1!important;
+    border-color: #018fd1!important;
+}
+.imgicon{vertical-align: text-bottom!important;}
+/* Αυτό θα τρέξει ΜΟΝΟ για οθόνες μικρότερες από 992px (Κινητά/Tablets) */
+@media (max-width: 991.98px)
+ {  .mobile-buttons{display: flex;
+flex-direction: column!important;}
+    .nav-height{height:auto!important;}
+    .navbar-collapse {
+        background-color: white; /* Γεμίζει το background */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Δίνει σκιά μόνο στο κινητό */
+        padding-left: 1rem; /* Δίνει αέρα γύρω-γύρω */
+        padding-right: 1rem;
+        border-radius: 0 0 15px 15px; /* Στρογγυλεύει τις κάτω γωνίες */
+        margin-top: 5px; /* Μικρό κενό από την μπάρα */
+    }
+}
+.navbar-toggler{padding:0!important;}

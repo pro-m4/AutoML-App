@@ -1,0 +1,10 @@
+uploads/datasets/*
+uploads/inference/*
+models/*
+.env
+server/dbconnect.php
+.local/
+.config/
+.cache/
+.bash_history
+server/python/venv/

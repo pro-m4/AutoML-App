@@ -1,0 +1,149 @@
+body { font-family: 'Instrument Sans', sans-serif!important; }
+.navbar{
+    position: sticky;
+top:0;
+z-index: 105;}
+.logoutbtn{position: absolute!important;
+bottom:0!important;}
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -260px;
+}
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed: 70px;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    width: var(--sidebar-width);
+    transition: width 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Collapsed sidebar */
+#wrapper.collapsed #sidebar-wrapper {
+    width: var(--sidebar-collapsed);
+}
+
+/* Spans στο sidebar */
+#wrapper.collapsed #sidebar-wrapper span {
+    display: none; /* εξαφανίζονται αμέσως */
+}
+
+#wrapper:not(.collapsed) #sidebar-wrapper span {
+    display: inline; /* εμφανίζονται όταν ανοίγει πλήρως */
+}
+
+/* Content */
+#page-content-wrapper {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+#wrapper.collapsed #page-content-wrapper {
+    margin-left: var(--sidebar-collapsed);
+    width: calc(100% - var(--sidebar-collapsed));
+}
+.toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: -15px;
+    transform: translateY(-50%);
+    background: #01ABF5;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+ :root { --sidebar-width: 260px; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        
+        #sidebar-wrapper {
+            width: var(--sidebar-width);
+            min-height: 100vh;
+            background: #212529;
+            position: fixed;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        #page-content-wrapper {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        #sidebar-wrapper .list-group-item {
+            padding: 1rem 1.5rem;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #sidebar-wrapper .list-group-item:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        #sidebar-wrapper .list-group-item.active { color: #fff; background: #01ABF5; border-radius: 0 15px 15px 0; margin-right: 10px; }
+
+        .main-card { border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        
+        #featuresContainer { 
+            display: flex; flex-wrap: wrap; gap: 10px; padding: 15px; background: #f8f9fa; border-radius: 8px; min-height: 50px;
+        }
+        
+        .feat-item {
+            border: 1px solid #dee2e6; padding: 8px 12px; border-radius: 6px; background: white; display: flex; align-items: center;
+        }
+
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        
+        .btn-xs { padding: 1px 5px; font-size: 0.75rem; }
+        .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #01ABF5;
+    --bs-btn-border-color: #01ABF5;
+
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #018fd1;
+    --bs-btn-hover-border-color: #018fd1;
+
+    --bs-btn-focus-shadow-rgb: 1, 171, 245;
+
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #007bbf;
+    --bs-btn-active-border-color: #007bbf;
+
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #01ABF5;
+    --bs-btn-disabled-border-color: #01ABF5;
+}
+.text-primary{color:#01ABF5!important;}
+.form-check-input:checked {
+    background-color: #01ABF5!important;
+    border-color: #01ABF5!important;
+}
+.bg-primary{background-color: #01ABF5!important;}
+@media (max-width: 991.98px) {
+    #featuresContainer{margin-left: 0!important;}
+    .mobile-pleft{padding-left: 0!important;}
+    .table{text-wrap: nowrap;}
+    #sidebar-wrapper {
+        display: none !important; /* Σιγουρεύουμε ότι έφυγε */
+    }
+    #page-content-wrapper {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    #wrapper {
+        display: block !important; /* Καταργούμε το d-flex στο κινητό */
+    }
+     #mobileSidebar .list-group-item:hover{ color: #fff; background: rgba(255,255,255,0.1); }
+        #mobileSidebar .list-group-item.active { color: #fff; background: #01ABF5; border-radius: 15px 0 0 15px;  }
+}
+.offcanvas.offcanvas-end {width:50%;}
+#mobileSidebar .list-group-item{color: rgba(255, 255, 255, 0.7);
+    background: transparent;}
