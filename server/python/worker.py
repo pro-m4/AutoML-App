@@ -45,7 +45,7 @@ def update_job_status(job_id, status, results=None):
     except Exception as e:
         print(f"[!] Database Error (update_status): {e}")
 
-# ... (οι υπόλοιπες συναρτήσεις παραμένουν ίδιες) ...
+# ......
 
 def run_training():
     print(f"--- Worker Started: Waiting for jobs ---")
@@ -95,6 +95,7 @@ def run_training():
                         all_results[fw] = res_data
 
                         if res_data.get('status') == 'success':
+                            print(f"    ⏱ {fw} training time: {res_data['training_time']} sec")
                             current_score = float(res_data['best_score'])
                             is_better = (current_score < best_score) if is_minimizing else (current_score > best_score)
                             

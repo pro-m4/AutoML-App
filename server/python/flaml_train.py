@@ -7,6 +7,8 @@ from flaml import AutoML
 from sklearn.metrics import (accuracy_score, f1_score, precision_score, recall_score, 
                              mean_squared_error, mean_absolute_error, r2_score)
 from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+import time
 
 def run_flaml():
     try:
@@ -61,12 +63,28 @@ def run_flaml():
         # Μετατροπή σε float32 για να είναι σίγουρα συμβατό με FLAML
         X_values = X.values.astype(np.float32)
         y_values = np.array(y).ravel()
+        # Train/Test Split
+        if task_type == 'classification':
+           X_train, X_test, y_train, y_test = train_test_split(
+               X_values,
+               y_values,
+               test_size=0.2,
+               random_state=42,
+               stratify=y_values
+           )
+        else:
+           X_train, X_test, y_train, y_test = train_test_split(
+               X_values,
+               y_values,
+               test_size=0.2,
+               random_state=42
+           )
 
         # 5. Setup FLAML
         automl = AutoML()
-        
+        training_start = time.time()
         # 5. Metric Mapping (FLAML-safe)
-        num_classes = len(np.unique(y_values))
+        num_classes = len(np.unique(y_train))
         
         if task_type == 'classification':
             if num_classes > 2:
@@ -99,7 +117,8 @@ def run_flaml():
             "verbose": 0
         }
         # 6. Train
-        automl.fit(X_train=X_values, y_train=y_values, **settings)
+        automl.fit(X_train=X_train, y_train=y_train, **settings)
+        training_time = time.time() - training_start
 
         # 7. Αποθήκευση Μοντέλου ΚΑΙ των Encoders
         # Πρέπει να αποθηκεύσουμε και τους encoders για να ξέρουμε τα ονόματα στο Predict
@@ -115,41 +134,42 @@ def run_flaml():
         joblib.dump(model_data, model_filename)
 
         # 8. Output & Scoring
-        y_pred = automl.predict(X_values)
+        y_pred = automl.predict(X_test)
         
         if y_pred is None:
             raise Exception("FLAML failed to produce predictions (y_pred is None).")
 
         if task_type == 'classification':
-            # Υπολογίζουμε τη μετρική που ζήτησε ο χρήστης με weighted μέσο όρο
+            
             if user_metric == 'f1':
-                final_score = f1_score(y_values, y_pred, average='weighted', zero_division=0)
+                final_score = f1_score(y_test, y_pred, average='weighted', zero_division=0)
             elif user_metric == 'precision':
-                final_score = precision_score(y_values, y_pred, average='weighted', zero_division=0)
+                final_score = precision_score(y_test, y_pred, average='weighted', zero_division=0)
             elif user_metric == 'recall':
-                final_score = recall_score(y_values, y_pred, average='weighted', zero_division=0)
+                final_score = recall_score(y_test, y_pred, average='weighted', zero_division=0)
             else:
-                final_score = accuracy_score(y_values, y_pred)
+                final_score = accuracy_score(y_test, y_pred)
         else:
-            # REGRESSION: Εδώ υπολογίζουμε ΑΥΤΟ ΠΟΥ ΖΗΤΗΣΕ Ο ΧΡΗΣΤΗΣ
+            # REGRESSION: 
             if user_metric == 'mse':
-                final_score = mean_squared_error(y_values, y_pred)
+                final_score = mean_squared_error(y_test, y_pred)
             elif user_metric == 'rmse':
-                final_score = np.sqrt(mean_squared_error(y_values, y_pred))
+                final_score = np.sqrt(mean_squared_error(y_test, y_pred))
             elif user_metric == 'mae':
-                final_score = mean_absolute_error(y_values, y_pred)
+                final_score = mean_absolute_error(y_test, y_pred)
             elif user_metric == 'r2':
-                final_score = r2_score(y_values, y_pred)
+                final_score = r2_score(y_test, y_pred)
             else:
                 # Fallback αν κάτι πάει λάθος
-                final_score = mean_squared_error(y_values, y_pred)
+                final_score = mean_squared_error(y_test, y_pred)
 
         print(json.dumps({
             "status": "success",
             "best_model": model_filename,
             "best_score": round(float(final_score), 4),
             "best_algorithm": automl.best_estimator,
-            "framework": "flaml"
+            "framework": "flaml",
+            "training_time": round(training_time, 3)
         }))
 
     except Exception as e:
