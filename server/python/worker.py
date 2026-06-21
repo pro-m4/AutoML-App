@@ -9,9 +9,9 @@ import sys
 # Ρυθμίσεις Βάσης
 db_config = {
     "host": "localhost",
-    "user": "automluser",
-    "password": "automluser2026",
-    "database": "automluser"
+    "user": "",
+    "password": "",
+    "database": ""
 }
 
 # Paths για Linux
