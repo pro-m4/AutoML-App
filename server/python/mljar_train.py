@@ -115,17 +115,34 @@ def run_mljar():
         # =========================
         # 6. LEADERBOARD
         # =========================
-        lb_path = os.path.join(results_path, "leaderboard.csv")
-        best_algo = "MLJAR Model"
+        
+        best_algo = "Unknown"
+        try:
+            lb_path = os.path.join(results_path, "leaderboard.csv")
 
-        if os.path.exists(lb_path):
-            try:
+            if os.path.exists(lb_path):
+
                 lb = pd.read_csv(lb_path)
-                if len(lb) > 0 and "model_type" in lb.columns:
-                    best_algo = lb.iloc[0]["model_type"]
-            except:
-                pass
 
+                # βγάζουμε το baseline
+                lb = lb[lb["model_type"] != "Baseline"]
+       
+                # για regression:
+                # r2 -> μεγαλύτερο καλύτερο
+                # rmse/mae/mse -> μικρότερο καλύτερο
+
+                if user_metric in ["rmse", "mae", "mse", "logloss"]:
+                    lb = lb.sort_values("metric_value", ascending=True)
+                else:
+                    lb = lb.sort_values("metric_value", ascending=False)
+
+                # πάρε το καλύτερο μοντέλο
+                if len(lb) > 0:
+                    best_algo = lb.iloc[0]["model_type"]
+
+        except Exception as e:
+            print("Leaderboard error:", e)
+ 
         # =========================
         # 7. PREDICTION (Στο Test Set!)
         # =========================

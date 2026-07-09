@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom nav-height fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom nav-height fixed-top">
     <div class="container">
         <a class="navbar-brand fw-bold fs-4" href="#hero">
             <img src="/automl/src/img/logo2.png" alt="Logo" height="40px" class="me-1" style="vertical-align:text-bottom!important;">
@@ -286,10 +286,14 @@
 
 
     <footer class="py-5 border-top text-center text-muted">
-        <div class="container">
-            <p class="small">&copy; 2026 Diploma Thesis Project. Created for academic research purposes.</p>
+    <div class="container">
+        <p class="small mb-2">&copy; 2026 Diploma Thesis Project. Created for academic research purposes.</p>
+        <div class="small">
+            <a href="/automl/privacy" class="text-decoration-none text-muted me-3">Privacy Policy</a>
+            <a href="/automl/terms" class="text-decoration-none text-muted">Terms of Use</a>
         </div>
-    </footer>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
